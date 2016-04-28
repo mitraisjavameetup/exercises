@@ -1,0 +1,72 @@
+configure(allprojects) { project ->
+    group = "com.mitrais.bootcamp.cdi"
+    version = "1.0.0"
+
+    apply plugin: "java"
+    // extra properties
+    ext.junitVersion = "4.12"
+    ext.assertjVersion = "3.4.1"
+    ext.springVersion = "4.2.5.RELEASE"
+    compileJava {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+
+    compileTestJava {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+
+    repositories {
+        mavenCentral()
+    }
+}
+
+configure(subprojects - project(":common")) { subproject ->
+    dependencies {
+        compile project(":common")
+        testCompile "junit:junit:${junitVersion}"
+        testCompile "org.assertj:assertj-core:${assertjVersion}"
+    }
+}
+project("common"){
+    dependencies{
+        compile "javax.inject:javax.inject:1"
+    }
+}
+project("exercise1"){
+    dependencies{
+        compile "org.springframework:spring-context:${springVersion}"
+    }
+}
+project("exercise2"){
+    dependencies{
+        compile "org.springframework:spring-context:${springVersion}"
+    }
+}
+project("exercise3"){
+    dependencies{
+        compile "org.springframework:spring-context:${springVersion}"
+    }
+}
+project("exercise4"){
+    dependencies{
+        compile "org.springframework:spring-context:${springVersion}"
+    }
+}
+project("exercise5"){
+    dependencies{
+        compile "org.springframework:spring-context:${springVersion}"
+        compile "org.springframework:spring-webmvc:${springVersion}"
+        compile 'com.fasterxml.jackson.core:jackson-databind:2.7.3'
+        compileOnly "javax.servlet:javax.servlet-api:3.1.0"
+        testCompile "org.mockito:mockito-core:1.+"
+        testCompile "org.springframework:spring-test:${springVersion}"
+    }
+}
+project("exercise6"){
+    dependencies{
+        compile "org.springframework:spring-context:${springVersion}"
+    }
+}
+
